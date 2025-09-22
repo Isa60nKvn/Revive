@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steal Your Fire - Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Capture The Flame - Game Field Layout</h1>
+        <div class="game-field" id="gameField">
+            <div class="outer-boundary"></div>
+            <!-- Bases -->
+            <div class="base base-red" id="base-red"></div>
+            <div class="base base-blue" id="base-blue"></div>
+            <div class="base base-green" id="base-green"></div>
+            <div class="base base-yellow" id="base-yellow"></div>
+            <div class="base base-purple" id="base-purple"></div>
+            <div class="base base-orange" id="base-orange"></div>
+            <!-- Center Area -->
+            <div class="center-area">FREE SPACE AREA</div>
+        </div>
+
+        <div class="instructions">
+            <h3>🏃‍♂️ How to Play - Updated Rules:</h3>
+            <p><strong>1.</strong> Each team has Tagger, Guardian, Free Runners</p>
+            <p><strong>2.</strong> Free Runners steal flags from enemy bases (1 flag at a time)</p>
+            <p><strong>3.</strong> Guardians stay in base and can ONLY tag players carrying flags within the base</p>
+            <p><strong>4.</strong> Taggers roam freely in the free area and can tag ANY opponent except teamates</p>
+            <p><strong>5.</strong> Tagged players drop flags and circle the outer boundary back to their base</p>
+            <p><strong>6.</strong> Game ends by time limit </p>
+            <p><strong>7.</strong> Team with most flags in their base wins!</p>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
