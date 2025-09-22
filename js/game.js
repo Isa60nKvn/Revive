@@ -45,8 +45,11 @@ teams.forEach(team => {
 
 // Helper to make elements draggable
 function makeDraggable(el){
-    let offsetX, offsetY;
+    let offsetX, offsetY, startX, startY;
+
+    // Mouse events
     el.onmousedown = function(e){
+        e.preventDefault();
         offsetX = e.clientX - el.offsetLeft;
         offsetY = e.clientY - el.offsetTop;
         document.onmousemove = function(e){
@@ -56,6 +59,28 @@ function makeDraggable(el){
         document.onmouseup = function(){
             document.onmousemove = null;
             document.onmouseup = null;
+        }
+    }
+
+    // Touch events
+    el.ontouchstart = function(e){
+        if(e.touches.length !== 1) return;
+        e.preventDefault();
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        offsetX = startX - el.offsetLeft;
+        offsetY = startY - el.offsetTop;
+
+        document.ontouchmove = function(e){
+            if(e.touches.length !== 1) return;
+            let moveX = e.touches[0].clientX;
+            let moveY = e.touches[0].clientY;
+            el.style.left = (moveX - offsetX) + 'px';
+            el.style.top = (moveY - offsetY) + 'px';
+        }
+        document.ontouchend = function(){
+            document.ontouchmove = null;
+            document.ontouchend = null;
         }
     }
 }
