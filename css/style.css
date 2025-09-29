@@ -23,8 +23,15 @@ body, html {
 }
 
 h1 {
-    font-size:24px;
+    font-size:28px;
     text-align: center;
+    margin-top:-12px;
+}
+.para-engineer {
+    font-size:14px;
+    text-align: center;
+    margin-top:-4px;
+    color: rgba(255,255,255,0.5);
 }
 
 .container {
