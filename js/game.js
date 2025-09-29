@@ -386,9 +386,11 @@ function repositionElements() {
 }
 
 // Initial setup
+// Initial setup
 function setupGame() {
     const gameFieldContent = document.createDocumentFragment();
     
+    // Create bases and add their counters
     teams.forEach(team => {
         const baseDiv = document.createElement('div');
         baseDiv.className = `base base-${team}`;
@@ -397,6 +399,7 @@ function setupGame() {
         gameFieldContent.appendChild(baseDiv);
     });
 
+    // Create flags
     flags.length = 0;
     teams.forEach(team => {
         for (let i = 0; i < STARTING_FLAGS_PER_TEAM; i++) {
@@ -411,18 +414,17 @@ function setupGame() {
         }
     });
 
+    // Create players
     players.length = 0;
     teams.forEach(team => {
         ['guardian', 'tagger', 'runner'].forEach(role => {
             const playerId = `${team}-${role.charAt(0).toUpperCase()}`;
-            // Base player object
             const playerObject = { 
                 id: playerId, 
                 role, 
                 team, 
                 carryingFlag: null 
             };
-            // **FIX:** Add scoring state properties specifically for runners
             if (role === 'runner') {
                 playerObject.isScoring = false;
                 playerObject.scoringTimeoutId = null;
@@ -435,13 +437,19 @@ function setupGame() {
             div.innerText = role[0].toUpperCase();
             div.style.backgroundColor = teamColors[team];
             
-            // Link the DOM element to the object for easy access in collision checks
             playerObject.el = div; 
             makeDraggable(div);
             gameFieldContent.appendChild(div);
         });
     });
 
+    // **FIX:** Create and add the center area back in
+    const centerAreaDiv = document.createElement('div');
+    centerAreaDiv.className = 'center-area';
+    centerAreaDiv.textContent = 'FREE SPACE AREA FREE SPACE AREA FREE SPACE AREA FREE SPACE AREA FREE SPACE AREA FREE SPACE AREA';
+    gameFieldContent.appendChild(centerAreaDiv);
+
+    // Replace the game field content in one go
     gameField.innerHTML = '';
     gameField.appendChild(gameFieldContent);
     repositionElements();
